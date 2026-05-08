@@ -1,31 +1,4 @@
 <!DOCTYPE html>
-            <td>1</td>
-            <td>1.1.1.1</td>
-            <td><a class="link" href="#">Pembuatan 1 m' pagar sementara dari kayu tinggi 2 meter</a></td>
-            <td>m'</td>
-            <td>Rp 1.106.344,-</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>1.1.1.2</td>
-            <td><a class="link" href="#">Pembuatan 1 m' pagar sementara dari seng gelombang rangka kayu tinggi 2 meter</a></td>
-            <td>m'</td>
-            <td>Rp 632.585,-</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div style="position:fixed; inset:0; background:rgba(0,0,0,0.45); display:flex; align-items:flex-start; justify-content:center; padding-top:60px;">
-    <div style="width:1300px; max-height:85vh; overflow:auto; background:white; border-radius:4px; box-shadow:0 8px 30px rgba(0,0,0,0.2);">
-      <div style="padding:20px; border-bottom:1px solid #ddd; position:sticky; top:0; background:white;">
-        <div style="font-size:18px; color:#444; margin-bottom:8px;">Analisa Harga Satuan Pekerjaan</div>
-        <div style="font-size:18px; font-weight:700; margin-bottom:10px;">1.1.1.1 - PEKERJAAN PERSIAPAN</div>
-        <div style="font-size:16px; line-height:1.5; font-weight:600;">1.1.1.1 - Pembuatan 1 m' pagar sementara dari kayu tinggi 2 meter (Lihat Peraturan Menteri Pekerjaan Umum dan Perumahan Rakyat Nomor 8 Tahun 2023 Lampiran B U.1.1.1 (c))</div>
-      </div>
-
-      <table style="width:100%; border-collapse:collapse;">
-        <thead>
           <tr style="background:#4a7cff; color:white;">
             <th>No.</th>
             <th>Uraian</th>
@@ -64,6 +37,35 @@
       </table>
     </div>
   </div>
+  <script>
+    const searchInput = document.getElementById('tableSearch');
+    const rowsPerPage = document.getElementById('rowsPerPage');
+    const tableBody = document.getElementById('mainTableBody');
+    const allRows = Array.from(tableBody.querySelectorAll('tr'));
+
+    function filterTable() {
+      const keyword = searchInput.value.toLowerCase();
+      const limit = parseInt(rowsPerPage.value, 10);
+
+      let visibleCount = 0;
+
+      allRows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        const match = text.includes(keyword);
+
+        if (match && visibleCount < limit) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    searchInput.addEventListener('input', filterTable);
+    rowsPerPage.addEventListener('change', filterTable);
+
+    filterTable();
+  </script>
 </body>
 </html>
-
